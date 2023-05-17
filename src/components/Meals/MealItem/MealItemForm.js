@@ -5,12 +5,13 @@ import Input from '../../UI/Input.js'
 
 const MealItemForm = (props) => {
   const[amountIsValid, setAmountIsValid] = useState(true);
+
   const amountInputRef = useRef();
 
   const submitHandler = (event) => {
     event.preventDefault();
 
-    const enteredAmount = amoutInputRef.current.value; // gets a number in a string
+    const enteredAmount = amountInputRef.current.value; // gets a number in a string
     const enteredAmountNumber = +enteredAmount; // converted  to a number by adding +to the var
 
     if (
@@ -21,6 +22,7 @@ const MealItemForm = (props) => {
       setAmountIsValid(false);
       return;
     }
+    props.onAddToCart(enteredAmountNumber);
   };
     return (
       <form className={classes.form} onSubmit={submitHandler}>
